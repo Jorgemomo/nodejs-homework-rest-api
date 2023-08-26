@@ -29,7 +29,7 @@ const contactSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: "user",
-      required: true,
+      required: [true, "Contact must have an owner.."],
     },
   },
   { versionKey: false, timestamps: true }
