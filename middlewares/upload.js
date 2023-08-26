@@ -8,7 +8,7 @@ const multerConfig = multer.diskStorage({
     cb(null, tempDir);
   },
   filename: (req, file, cb) => {
-    cb(nulll, file.originalname);
+    cb(null, file.originalname);
   },
   limits: {
     fileSize: 2000,
