@@ -1,7 +1,7 @@
 const { Conflict } = require("http-errors");
 const { User } = require("../../models");
 const gravatar = require("gravatar");
-const { nanoid } = require("nanoid");
+const { v4 } = require("uuid");
 
 const { sendEmail } = require("../../utils");
 
@@ -12,7 +12,7 @@ const register = async (req, res) => {
     throw new Conflict(`User with ${email} already exist`);
   }
 
-  const verificationToken = nanoid();
+  const verificationToken = v4();
   const avatarURL = gravatar.url(email, { d: "monsterid" });
   const newUser = new User({
     email,
@@ -26,8 +26,8 @@ const register = async (req, res) => {
   newUser.save();
   const mail = {
     to: email,
-    subject: "Підтвердження реестраціі на сайті",
-    html: `<a target="_blank" href="http://localhost:3000/api/auth/verify/${verificationToken}">Натисніть для підтвердження реестрації</a>`,
+    subject: "Confirmation of registration on the site.",
+    html: `<a target="_blank" href="http://localhost:3000/api/auth/verify/${verificationToken}">Click to confirm registration</a>`,
   };
   await sendEmail(mail);
 

@@ -78,4 +78,5 @@ module.exports = {
   schemas,
   registerSchema,
   loginSchema,
+  verifyEmailSchema,
 };
