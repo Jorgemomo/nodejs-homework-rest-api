@@ -6,6 +6,7 @@ const { SENDGRID_API_KEY } = process.env;
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 const sendEmail = async (data) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const email = { ...data, from: "krabat@ex.ua" };
     await sgMail.send(email);
